@@ -20,7 +20,7 @@ function validData(data) {
             Notiflix.Notify.failure('Please choose a date in the future');
         } else {
             refs.startBtnEl.removeAttribute('disabled')
-            this.currentTime = data[0].getTime() 
+            timer.currentTime = data[0].getTime() 
       } 
 }
 
@@ -66,7 +66,7 @@ refs.startBtnEl.addEventListener('click',intervalCounter)
 function intervalCounter() {
     timer.intervalTimer = setInterval(() => {
         let dataNow = Date.now()
-        let deltaTime = currentTime- dataNow
+        let deltaTime = timer.currentTime- dataNow
         let { days, hours, minutes, seconds } = timer.convertMs(deltaTime)
         refs.daysValue.textContent =  days
         refs.hoursValue.textContent = hours
