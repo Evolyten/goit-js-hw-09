@@ -20,9 +20,17 @@ function userData(e) {
     console.log(e.target.name) 
 }
 let time = null;
+
+
+
 refs.submitBtn.addEventListener('click', (event) => {
-  starTimer(event)
+  if (obj.delay && obj.step && obj.amount) { starTimer(event) } 
+    
+
+    
+  
 })
+
 
 function starTimer(event) {
   event.preventDefault()
@@ -40,8 +48,10 @@ function timerUp() {
   } else {
     obj.counter += 1
     promiseCall(obj.counter, obj.delayTime)
+
     obj.delayTime = (obj.delay + obj.step * obj.counter)
     console.log(obj.delayTime)
+
     console.log(obj)
     time=setTimeout(timerUp, obj.delayTime)
   }
