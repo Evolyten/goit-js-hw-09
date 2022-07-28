@@ -19,29 +19,33 @@ function userData(e) {
     obj[name]= Number(e.target.value)
     console.log(e.target.name) 
 }
-
-let time;
+let time = null;
 refs.submitBtn.addEventListener('click', (event) => {
+  starTimer(event)
+})
+
+function starTimer(event) {
   event.preventDefault()
   obj.counter = 0
-  obj.delayTime = 0
-  obj.currentTimeout=0
-  time=setTimeout(timerUp,obj.delay)
-})
+  obj.delayTime = obj.delay + obj.counter * obj.step
+  console.log(obj.delayTime)
+  
+  time = setTimeout(timerUp, obj.delayTime)
+}
 
 
 function timerUp() {
   if (obj.counter >= obj.amount) {
-    clearTimeout(time)  
-    obj.amount=0
-  } else {
-    obj.delayTime=obj.delay+ obj.step*obj.counter
-    obj.counter += 1
-    obj.currentTimeout=obj.delay+ obj.step*obj.counter
 
+  } else {
+    obj.counter += 1
     promiseCall(obj.counter, obj.delayTime)
+    obj.delayTime = (obj.delay + obj.step * obj.counter)
+    console.log(obj.delayTime)
+    console.log(obj)
+    time=setTimeout(timerUp, obj.delayTime)
   }
-  time=setTimeout(timerUp,obj.currentTimeout)
+
 }
 
 function createPromise(positions, delays) {
