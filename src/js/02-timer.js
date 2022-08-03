@@ -60,22 +60,34 @@ addLeadingZero(value) {
 }
 
 
-
 refs.startBtnEl.addEventListener('click',intervalCounter)
 
 function intervalCounter() {
     timer.intervalTimer = setInterval(() => {
-        let dataNow = Date.now()
-        let deltaTime = timer.currentTime- dataNow
+        let dateNow = Date.now()
+        let deltaTime = timer.currentTime- dateNow
         let { days, hours, minutes, seconds } = timer.convertMs(deltaTime)
         refs.daysValue.textContent =  days
         refs.hoursValue.textContent = hours
         refs.minsValue.textContent = minutes
-        refs.secValue.textContent=seconds
+        refs.secValue.textContent = seconds
+        console.log(deltaTime)
+        if (deltaTime < 1000) {
+            Notiflix.Notify.success('Please choose a new date in the future')
+            clearInterval(timer.intervalTimer)
+            refs.daysValue.textContent =  '00'
+            refs.hoursValue.textContent = '00'
+            refs.minsValue.textContent = '00'
+            refs.secValue.textContent = '00'
+            refs.startBtnEl.removeAttribute('disabled')
+
+        }
+        
+        
     }, 1000)
     refs.startBtnEl.setAttribute('disabled', 0)
     
 }
 
 flatpickr(refs.calendar, options)
-
+ 

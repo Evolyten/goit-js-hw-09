@@ -26,19 +26,15 @@ let time = null;
 refs.submitBtn.addEventListener('click', (event) => {
   if (obj.delay && obj.step && obj.amount) { starTimer(event) } 
     
-
-    
-  
 })
 
 
 function starTimer(event) {
   event.preventDefault()
   obj.counter = 0
-  obj.delayTime = obj.delay + obj.counter * obj.step
-  console.log(obj.delayTime)
-  
-  time = setTimeout(timerUp, obj.delayTime)
+  obj.delayTime = (obj.delay + obj.step * obj.counter)//для записи первого значения в вреиени в промис
+
+  time = setTimeout(timerUp, obj.delay)
 }
 
 
