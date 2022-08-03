@@ -24,7 +24,10 @@ let time = null;
 
 
 refs.submitBtn.addEventListener('click', (event) => {
-  if (obj.delay && obj.step && obj.amount) { starTimer(event) } 
+  if (obj.delay && obj.step && obj.amount) { starTimer(event) } else {
+    Notiflix.Notify.failure(`❌ Fill all fields`);
+    
+  } 
     
 })
 
