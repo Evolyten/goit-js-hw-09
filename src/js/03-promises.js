@@ -54,7 +54,7 @@ function timerUp() {
 
     obj.delayTime +=obj.step 
 
-    time=setTimeout(timerUp, obj.delayTime)
+    time=setTimeout(timerUp, obj.step)
   }
 
 }
