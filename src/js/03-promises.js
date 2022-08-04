@@ -35,9 +35,9 @@ refs.submitBtn.addEventListener('click', (event) => {
 function starTimer(event) {
   event.preventDefault()
   obj.counter = 0
-  obj.delayTime = (obj.delay + obj.step * obj.counter)//для записи первого значения в вреиени в промис
+  obj.delayTime = obj.delay//для записи первого значения в вреиени в промис
 
-  time = setTimeout(timerUp, obj.delay)
+  time = setTimeout(timerUp, obj.delayTime)
 }
 
 
@@ -46,12 +46,14 @@ function timerUp() {
 
   } else {
     obj.counter += 1
+    console.log("obj",obj)
+    console.log("delayTIme",obj.delayTime)
+    console.log("position",obj.counter)
+    
     promiseCall(obj.counter, obj.delayTime)
 
-    obj.delayTime = (obj.delay + obj.step * obj.counter)
-    console.log(obj.delayTime)
+    obj.delayTime +=obj.step 
 
-    console.log(obj)
     time=setTimeout(timerUp, obj.delayTime)
   }
 
